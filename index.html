@@ -52,6 +52,8 @@
 
     var showAnswer = false;
 
+    var looping = false;
+
 
     
 
@@ -64,7 +66,7 @@
 
         noStroke();
 
-        music.loop();
+        
 
         imageMode(CENTER);
 
@@ -241,6 +243,11 @@
         image(flowerTwo, random(0, width/5), random(0, height/2));
     }
 			
+    function mousePressed() {
+        if (!looping) {
+            music.loop();
+        }
+    }
 	// function draw(){
     //     // displayQ();
     //     // for (i = 0; i < 100; i++) {
