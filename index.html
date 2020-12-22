@@ -76,15 +76,15 @@
             textLeading(50)
 
             oneButton = createButton("Team Partridges");
-            oneButton.position(width/2 + 100, 400);
+            oneButton.position(width/2 + 100, 380);
             oneButton.mousePressed(scoreUpOne);
 
             twoButton = createButton("Team Turtle Doves");
-            twoButton.position(width/2 + 100, 500);
+            twoButton.position(width/2 + 100, 480);
             twoButton.mousePressed(scoreUpTwo);
 
             threeButton = createButton("Team French Hens");
-            threeButton.position(width/2 + 100, 600);
+            threeButton.position(width/2 + 100, 580);
             threeButton.mousePressed(scoreUpThree);
 
         
@@ -188,8 +188,8 @@
         rect(width-10, 0, 10, height);
         rect(0, height-10, width, 10);
 
-        rect(width/2, 0, 2, height);
-        rect(width/2, 250, width/2, 2);
+        rect(width/2, 0, 3, height);
+        rect(width/2, 250, width/2, 3);
 
         image(wreath, width - height/8 - 50, height - height/8 - 50, 0.9*height/4, 0.9*height/4)
         image(holly, height/8 + 50, height - height/8 - 50, height/4, height/4); 
@@ -201,9 +201,9 @@
 
         fill("#BD3110");
         textAlign(CENTER);
-        text(onePoints, width/2 + 80, 400 + 31);
-        text(twoPoints, width/2 + 80, 500 + 31);
-        text(threePoints, width/2 + 80, 600 + 31);
+        text(onePoints, width/2 + 80, 380 + 31);
+        text(twoPoints, width/2 + 80, 480 + 31);
+        text(threePoints, width/2 + 80, 580 + 31);
         textAlign(LEFT);
 
 
