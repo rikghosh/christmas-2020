@@ -53,13 +53,13 @@
     var showAnswer = false;
 
     var looping = false;
+    var snowing = true;
 
 
     
 
 	function setup(){
 		createCanvas(window.innerWidth, window.innerHeight);
-        background("creme");
         textSize(32);
         textFont("Georgia");
         textLeading(50)
@@ -70,50 +70,50 @@
 
         imageMode(CENTER);
 
+        if (looping) {
+            textSize(32);
+            textFont("Georgia");
+            textLeading(50)
+
+            oneButton = createButton("Team Partridges");
+            oneButton.position(width/2 + 100, 400);
+            oneButton.mousePressed(scoreUpOne);
+
+            twoButton = createButton("Team Turtle Doves");
+            twoButton.position(width/2 + 100, 500);
+            twoButton.mousePressed(scoreUpTwo);
+
+            threeButton = createButton("Team French Hens");
+            threeButton.position(width/2 + 100, 600);
+            threeButton.mousePressed(scoreUpThree);
+
         
-        oneButton = createButton("Team Partridges");
-        oneButton.position(width/2 + 100, 400);
-        oneButton.mousePressed(scoreUpOne);
 
-        twoButton = createButton("Team Turtle Doves");
-        twoButton.position(width/2 + 100, 500);
-        twoButton.mousePressed(scoreUpTwo);
+            nextButton = createButton("Onward!");
+            nextButton.position(width/2 + 50, 50);
+            nextButton.mousePressed(nextQ);
 
-        threeButton = createButton("Team French Hens");
-        threeButton.position(width/2 + 100, 600);
-        threeButton.mousePressed(scoreUpThree);
-
-       
-
-        nextButton = createButton("Onward!");
-        nextButton.position(width/2 + 50, 50);
-        nextButton.mousePressed(nextQ);
-
-        toggleButton = createButton('Unwrap "Present"');
-        toggleButton.position(width/2 + 50, 150);
-        toggleButton.mousePressed(toggleAnswer);
+            toggleButton = createButton('Unwrap "Present"');
+            toggleButton.position(width/2 + 50, 150);
+            toggleButton.mousePressed(toggleAnswer);
 
 
 
-        // randomly set order of questions
-        order = Array.from(Array(trivia.getRowCount()).keys());
-        shuffle(order, true);
-        console.log(order);
-        
-        round = 0;
+            // randomly set order of questions
+            order = Array.from(Array(trivia.getRowCount()).keys());
+            shuffle(order, true);
+            console.log(order);
+            
+            round = 0;
 
-        // choice = floor(random(trivia.getRowCount()))
-        // choice = 39;
-
-        displayQ();
-
-
-        console.log(trivia)
-        //trivia.removeRow(0);
-
-        console.log(trivia.getRowCount());
-        console.log(trivia.getColumnCount());
-        console.log(trivia);
+            displayQ();
+        } else {
+            background("#BD3110");
+            fill("F1F0EA");
+            textSize(100);
+            textLeading(150);
+            text("On this starry Christmas night / who knows what is right / Not you not me / nor he nor she / It is only we / all together on / Christmas Evening", 50, 50, width - 100)
+        }
 
 
 	}
@@ -129,9 +129,10 @@
             oneButton.hide();
             twoButton.hide();
             threeButton.hide();
-            background("white");
+            background("#BD3110");
+            fill("#F1F0EA");
             textAlign(CENTER);
-            text("Trivia Over Merry Christmas", width/2, height/2);
+            text("Merry Christmas", width/2, height/2);
             text("Partridges: " + onePoints + ", Turtle Doves: " + twoPoints + ", French Hens: " + threePoints, width/2, height/2 + 150);
 
         } else {
@@ -194,12 +195,16 @@
         image(holly, height/8 + 50, height - height/8 - 50, height/4, height/4); 
         image(leaves, width/2, height - height/8 - 50, 0.8*height/2, 0.8*height/4);
         image(bird, width - height/8 - 50, 0.6*height/8 + 50, 0.6*height/4, 0.6*height/4)
-
+        
+        fill("#525A41");
         text("Sweet, Sweet Points(ettias)", width/2 + 50, 325);
 
-        text(onePoints, width/2 + 50, 400 + 31);
-        text(twoPoints, width/2 + 50, 500 + 31);
-        text(threePoints, width/2 + 50, 600 + 31);
+        fill("#BD3110");
+        textAlign(CENTER);
+        text(onePoints, width/2 + 80, 400 + 31);
+        text(twoPoints, width/2 + 80, 500 + 31);
+        text(threePoints, width/2 + 80, 600 + 31);
+        textAlign(LEFT);
 
 
         choice = order[round];
@@ -211,10 +216,14 @@
 
 
         if (showAnswer){
+            fill("#525A41");
             text("Answer", 50, 75);
+            fill("#BD3110");
             text(answer, 50, 120, width/2 - 100);
         } else {
+            fill("#525A41");
             text("Question " + String(round + 1), 50, 75);
+            fill("#BD3110");
             text(question, 50, 120, width/2 - 100);
         }
 
@@ -246,8 +255,47 @@
     function mousePressed() {
         if (!looping) {
             music.loop();
+            looping = true;
+            setup();
         }
     }
+
+    function draw() {
+        if (!looping) {
+            background("#BD3110");
+            fill("F1F0EA");
+            textSize(100);
+            textLeading(150);
+            text("On this starry Christmas night / who knows what is right / Not you not me / nor he nor she / It is only we / all together on / Christmas Evening", 50, 50, width - 100)
+            for (i = 0; i < 100; i++) {
+                    // var col = color(random(255), random(255), random(255));
+                var col = color("white");
+                var xpos = random(width);
+                var ypos = random(height);
+                var snowflake = (noise(xpos, ypos)*10) + 5;
+                // col.setAlpha(50)
+                fill(col);
+                noStroke();
+                ellipse(xpos, ypos, snowflake, snowflake);
+            }
+        
+        }
+
+        if (snowing) {
+        
+            if (frameCount % 360 == 0) {
+            for (i = 0; i < 100; i++) {
+                    // var col = color(random(255), random(255), random(255));
+                var col = color("white");
+                // col.setAlpha(50)
+                fill(col);
+                noStroke();
+                ellipse(random(width), random(height), 10, 10);
+            }
+        }
+        }
+    }
+
 	// function draw(){
     //     // displayQ();
     //     // for (i = 0; i < 100; i++) {
