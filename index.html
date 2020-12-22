@@ -286,10 +286,13 @@
             if (frameCount % 4 == 0) {
                 // var col = color(random(255), random(255), random(255));
                 var col = color("white");
+                var xpos = random(width);
+                var ypos = random(height);
+                var snowflake = (noise(xpos, ypos)*10) + 5;
                 // col.setAlpha(50)
                 fill(col);
                 noStroke();
-                ellipse(random(width), random(height), 10, 10);
+                ellipse(xpos, ypos, snowflake, snowflake);
 
         }
         }
